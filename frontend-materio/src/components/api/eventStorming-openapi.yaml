@@ -1,0 +1,157 @@
+---
+openapi: 3.0.2
+info:
+  title: EventStorming
+  version: 0.0.1
+  description: API definition of eventStorming
+  contact:
+    name: creator's name
+    url: 'http://creator.homepage.address'
+    email: creator@creator.com
+  license:
+    name: MIT License
+    url: 'https://opensource.org/licenses/MIT'
+paths:
+  /eventStormings:
+    summary: Global operations on eventStormings
+    get:
+      tags:
+        - eventStormings
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventStorming'
+              examples:
+                eventStormings_json:
+                  value:
+                    - id: 1
+                      requirement: A string
+                      json: A string
+          description: Get list of eventStormings
+      operationId: GetEventStorming
+      summary: Get list of eventStormings
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventStorming'
+            examples:
+              '1':
+                value:
+                  id: 1
+                  requirement: A string
+                  json: A string
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventStorming'
+              examples:
+                '1':
+                  value:
+                    id: 1
+                    requirement: A string
+                    json: A string
+          description: Changed EventStorming
+      operationId: Post EventStorming
+      summary: Post EventStorming
+  '/eventStormings/{id}':
+    summary: Specific operation on eventStormings
+    get:
+      parameters:
+        - examples:
+            '1':
+              value: 1
+          name: id
+          description: EventStorming name
+          schema:
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventStorming'
+              examples:
+                '1':
+                  value:
+                    id: 1
+                    requirement: A string
+                    json: A string
+          description: eventStormings with specified id
+      operationId: GetEventStormingById
+      summary: Get EventStorming by id
+      description: Get EventStorming by id
+    patch:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventStorming'
+            examples:
+              '1':
+                value:
+                  id: 1
+                  requirement: A string
+                  json: A string
+        required: true
+      parameters:
+        - examples:
+            '1':
+              value: 1
+          name: id
+          description: EventStorming name
+          schema:
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventStorming'
+              examples:
+                '1':
+                  value:
+                    id: 1
+                    requirement: A string
+                    json: A string
+          description: Changed EventStorming
+      operationId: PatchEventStorming
+      summary: Patch existing EventStorming
+    parameters:
+      - name: id
+        description: EventStorming id
+        schema:
+          type: integer
+        in: path
+        required: true
+components:
+  schemas:
+    EventStorming:
+      title: Root Type for EventStorming
+      description: The root of the EventStorming type's schema.
+      type: object
+      properties:
+        id:
+          description: id of this EventStorming
+          type: integer
+        requirement:
+          description: requirement of this EventStorming
+          type: string
+        json:
+          description: json of this EventStorming
+          type: string
+tags:
+  - name: EventStorming
+    description: EventStorming resource

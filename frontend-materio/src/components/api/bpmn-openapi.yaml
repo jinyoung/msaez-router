@@ -1,0 +1,157 @@
+---
+openapi: 3.0.2
+info:
+  title: Bpmn
+  version: 0.0.1
+  description: API definition of bpmn
+  contact:
+    name: creator's name
+    url: 'http://creator.homepage.address'
+    email: creator@creator.com
+  license:
+    name: MIT License
+    url: 'https://opensource.org/licenses/MIT'
+paths:
+  /bpmns:
+    summary: Global operations on bpmns
+    get:
+      tags:
+        - bpmns
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bpmn'
+              examples:
+                bpmns_json:
+                  value:
+                    - id: 1
+                      requirement: A string
+                      json: A string
+          description: Get list of bpmns
+      operationId: GetBpmn
+      summary: Get list of bpmns
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bpmn'
+            examples:
+              '1':
+                value:
+                  id: 1
+                  requirement: A string
+                  json: A string
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bpmn'
+              examples:
+                '1':
+                  value:
+                    id: 1
+                    requirement: A string
+                    json: A string
+          description: Changed Bpmn
+      operationId: Post Bpmn
+      summary: Post Bpmn
+  '/bpmns/{id}':
+    summary: Specific operation on bpmns
+    get:
+      parameters:
+        - examples:
+            '1':
+              value: 1
+          name: id
+          description: Bpmn name
+          schema:
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bpmn'
+              examples:
+                '1':
+                  value:
+                    id: 1
+                    requirement: A string
+                    json: A string
+          description: bpmns with specified id
+      operationId: GetBpmnById
+      summary: Get Bpmn by id
+      description: Get Bpmn by id
+    patch:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Bpmn'
+            examples:
+              '1':
+                value:
+                  id: 1
+                  requirement: A string
+                  json: A string
+        required: true
+      parameters:
+        - examples:
+            '1':
+              value: 1
+          name: id
+          description: Bpmn name
+          schema:
+            type: integer
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bpmn'
+              examples:
+                '1':
+                  value:
+                    id: 1
+                    requirement: A string
+                    json: A string
+          description: Changed Bpmn
+      operationId: PatchBpmn
+      summary: Patch existing Bpmn
+    parameters:
+      - name: id
+        description: Bpmn id
+        schema:
+          type: integer
+        in: path
+        required: true
+components:
+  schemas:
+    Bpmn:
+      title: Root Type for Bpmn
+      description: The root of the Bpmn type's schema.
+      type: object
+      properties:
+        id:
+          description: id of this Bpmn
+          type: integer
+        requirement:
+          description: requirement of this Bpmn
+          type: string
+        json:
+          description: json of this Bpmn
+          type: string
+tags:
+  - name: Bpmn
+    description: Bpmn resource
